@@ -77,16 +77,23 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
 8. The final disadvantage is that WebAssembly is required. Sure, it is all part of major browsers, but sometimes you need your app to run on older browsers that might not have WebAssembly.
 
 ### Final Thought
- When you need near-native performance, for instance, when you are creating a game, you should use Blazor WebAssembly. And when you need to connect to things like databases and APIs, you'd be better off using Blazor Server. You can do this in Blazor WebAssembly, but you would be storing your credentials on every client. And when you cannot be sure that WebAssembly is on your user's device, you should use Blazor Server. Okay, so when you want to run your application offline, you use Blazor WebAssembly because it doesn't need to connect to the server. And when you don't want to run a fully featured server and be responsible for maintaining it and keeping it up and running, you also use Blazor WebAssembly. And finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
+ 1. when you need near-native performance, for instance, when you are creating a game, you should use Blazor WebAssembly. 
+ 2. when you need to connect to things like databases and APIs, you'd be better off using Blazor Server.You can do this in Blazor WebAssembly, but you would be storing your credentials on every client.  
+ 3. when you cannot be sure that WebAssembly is on your user's device, you should use Blazor Server.  
+ 4. when you want to run your application offline, you use Blazor WebAssembly because it doesn't need to connect to the server. 
+ 5. when you don't want to run a fully featured server and be responsible for maintaining it and keeping it up and running, you also use Blazor WebAssembly. 
+ 6. finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
+
 ## Code reuse
 SPA developers have been fighting a losing battle for years, where web API endpoints define a payload in a certain shape — and the developer has to understand the shape of each endpoint. Consuming client-side code has to model the same shape, this is error-prone as the server can change the shape of an API whenever it needs to. The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app. I cannot stress the importance of this enough. Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
 
-## Blazor Design Patterns
-As you start to use Blazer, you might notice some design similarities to some of the popular JavaScript frameworks out there. Blazer is a component driven framework. Components allow us to break apart. Web-page is into reusable, isolated pieces that can be easily moved around the site. These components can do each communicate between one another and the server and have their own life cycles. 
-
-Single page apps dynamically rewrite the same web-page in response to user actions. They also rely on background requests through AJAX or Web sockets to retrieve updated data or mark up. Rather than reloading that entire page from the server en blazer, each component is able to independently communicate with the server or other parts of the page. Even as users switch between conceptual pages on the navigation bars, Blazer is simply calculating changes to the page and rewriting the markup. 
-
-Single page apps provide a fluid and responsive experience for the user and avoid those constant full page reloads, which can also improve performance. 
+## Blazor Design Pattern
+- As you start to use Blazer, you might notice some design similarities to some of the popular JavaScript frameworks out there. **Blazer is a component driven framework.** 
+-  Components allow us to break apart. Web-page is into reusable, isolated pieces that can be easily moved around the site. These components can do each communicate between one another and the server and have their own life cycles.
+- Single page apps dynamically rewrite the same web-page in response to user actions. They also rely on background requests through AJAX or Web sockets to retrieve updated data or mark up. Rather than reloading that entire page from the server.
+- each component is able to independently communicate with the server or other parts of the page. 
+- Even as users switch between conceptual pages on the navigation bars, Blazor is simply **calculating changes to the page and rewriting the markup**.  
+- Single page apps provide a fluid and responsive experience for the user and avoid those constant full page reloads, which can also improve performance. 
 
 ## Dependency Injection Fundamentals
 dependency injection or D. I is a critical aspect of a properly designed blazer application .
