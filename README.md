@@ -91,33 +91,68 @@ SPA developers have been fighting a losing battle for years, where web API endpo
 - As you start to use Blazer, you might notice some design similarities to some of the popular JavaScript frameworks out there. **Blazer is a component driven framework.** 
 -  Components allow us to break apart. Web-page is into reusable, isolated pieces that can be easily moved around the site. These components can do each communicate between one another and the server and have their own life cycles.
 - Single page apps dynamically rewrite the same web-page in response to user actions. They also rely on background requests through AJAX or Web sockets to retrieve updated data or mark up. Rather than reloading that entire page from the server.
-- each component is able to independently communicate with the server or other parts of the page. 
+- Each component is able to independently communicate with the server or other parts of the page. 
 - Even as users switch between conceptual pages on the navigation bars, Blazor is simply **calculating changes to the page and rewriting the markup**.  
 - Single page apps provide a fluid and responsive experience for the user and avoid those constant full page reloads, which can also improve performance. 
 
 ## Dependency Injection Fundamentals
-dependency injection or D. I is a critical aspect of a properly designed blazer application .
-Conceptually dependency injection is a design pattern that implements inversion of control and dependency inversion principles. In generalized terms, these ideas state that high level classes or components should not depend on low level component implementations or be responsible for creating them. Instead, they should depend on abstractions that are provided to them in order to create loosely coupled components. .
+- Dependency injection or DI is a critical aspect of a properly designed blazer application .
+- Conceptually dependency injection is a design pattern that implements inversion of control and dependency inversion principles. 
+- In generalized terms, these ideas state that high level classes or components should not depend on low level component implementations or be responsible for creating them. Instead, they should depend on abstractions that are provided to them in order to create **loosely coupled components**.
+- A dependency injection container is responsible for supplying instances of dependencies throughout the application.
+-.NET  provides easy access to a default container through the services collection, which could be configured in the startup class. 
 
-A dependency injection container is responsible for supplying instances of dependencies throughout the application. So let's say we have two different blazer components and they each declared dependencies on different services using interfaces. The container could be configured to supply specific implementations of those contracts when our components error created by the framework, The D I container is then responsible for supplying instances of those interfaces. .NET Core provides easy access to a default container through the services collection, which could be configured in the startup class. 
+### Dependency injection can also help manage the lifecycle of different instances throughout our app. 
+- one of the most important dependency injection concepts in .NET is three idea of service lifetimes. 
+- a service lifetime determines when a new instance of a dependency is created by the DI  Container
+- is a new service created for every request or only once during the life of the application. .NET core provides useful features that allow us to easily manage and understand this idea in both Blazer Server and web assembly.
 
-Dependency injection can also help manage the lifecycle of different instances throughout our app. 
-
-one of the most important dependency injection concepts in .NET is three idea of service lifetimes. So let's review what these lifetimes are and how they apply to the Blazer framework. In simple terms, a service lifetime determines when a new instance of a dependency is created by the D. I. Container, for example, is a new service created for every request or only once during the life of the application. .NET core provides useful features that allow us to easily manage and understand this idea in both Blazer Server and web assembly.
-
-Let's start by exploring these lifetimes in Blazer Server. In the previous clips, we saw how to register classes with the D I container using the ad Transient Helper. When dependencies are registered with this method, a new instances created every request for every class or component that needs it. Another option is AD DS Singleton, which creates one instance of a service for the entire time the application is running. That instance is shared across all the different requests and components. The final option is AD DS scoped, which will cause a service to be reused for all requests in the same circuit. So then you might be wondering, Well, what is a circuit? Well, a blazer circuit is an abstraction over the SignalR connection between the browser and the server that helps to manage our state and scope. Blazer circuits are crucial for rendering UI updates seamlessly on the server. This means circuits only exist in Blazer server hosting models and not in the web assembly model, since those apps run entirely in the browser.
-
-So let's say we have a user who visits are Blazer Server app in the browser, which creates a SignalR connection to our server to load the page. This connection is treated as a new blazer circuit. Closing the browser tab or navigating to another site would terminate the circuit and release those resource is now. Let's say that page they visit has two components, which have a dependency on a message service that is registered with the AD DS sculpt method. This means the D I container will create one instance of that dependency and that will be reused among the components of that circuit. If a second users were to visit that page on the site, a second circuit would be created. A second instance of the dependency would also be created and shared among the components of that circuit. Now let's look at service lifetimes in the context of web assembly. Both transient and singleton scopes work exactly the same way and web assembly with transients a new instance will be created every time it is needed, and Singleton's will result in one instance that shared across the app, however, AD DS scoped behaves differently in web assembly, and this makes sense if we think about it. Blazer circuits do not exist in web assembly, since there is no SignalR round trip to the server to manage state. This means that in web assembly, services registered with AD DS scoped are also simply treated as Singleton's. 
+### Let's start by exploring these lifetimes in Blazer Server. 
+- when  register classes with the DI container using the  **Transient Helper**.
+ 1.  When dependencies are registered with this method, a new instances created every request for every class or component that needs it.
+- Another option is  **Singleton**, which creates one instance of a service for the entire time the application is running. 
+ 1. That instance is shared across all the different requests and components. 
+- The final option is **Scoped**, which will cause a service to be reused for all requests in the **same circuit**. 
+#### what is a circuit? 
+-  Blazer circuit is an abstraction over the SignalR connection between the browser and the server that helps to manage our state and scope. 
+-  Blazer circuits are crucial for rendering UI updates seamlessly on the server. 
+-  This means circuits only exist in Blazer server hosting models and not in the web assembly model, since those apps run entirely in the browser.
+-  let's say we have a user who visits are Blazer Server app in the browser.
+ 1. this will create a SignalR connection to our server to load the page. 
+ 2. This connection is treated as a new blazer circuit. 
+ 3. Closing the browser tab or navigating to another site would terminate the circuit and release those resource is now. 
+ 4. If there is a dependency that registered using Scoped. This means the DI container will create one instance of that dependency and that will be reused among the components of that circuit. 
+ 5. If a second users were to visit that page on the site, a second circuit would be created. A second instance of the dependency would also be created and shared among the components of that circuit. 
+ ### Now let's look at service lifetimes in the context of Web Assembly. 
+ - Both transient and singleton scopes work exactly the same way and web assembly with transients a new instance will be created every time it is needed, and Singleton's will result in one instance that shared across the app.
+ - however,scoped behaves differently in web assembly, and this makes sense if we think about it. 
+ - Blazer circuits do not exist in web assembly, since there is no SignalR round trip to the server to manage state. 
+ - This means that in web assembly, services registered with  scoped are also simply treated as Singleton's. 
 
 ## Understanding the Blazor Routing System
 Conceptually routing is very similar in Blazer Server and web assembly, so the actual code and usage for both is almost identical. However, there are some differences in the underlying implementation details. 
 
-So let's start with Blazers server and let's say that a request comes in from the home page of our app. By default, that request is routed to the host AD CS HTML Razor page, which is rendered back to the browser and acts as the main container for our blazer app. This host file also includes a SignalR JavaScript library and a marker comment in the HTML. Together, these items bootstrap are blazer app, and they create a new WebSocket circuit connection with the server. As we navigate the site, those you are. All changes are intercepted and sent over the blazer circuit as messages and events rather than his. HTTP requests for entirely new pages or new HTML documents, a component called the Blazer router response to these events by locating a component with a matching route template for the requested URL. The selected component is then rendered and sent back to the browser as an HTML fragment, where it is used to rewrite part of the original page that has changed. Remember, with single page apps, we are continuously rewriting the DOM of the same page only where updates error necessary. The Blazer circuit also stays open to manage future interactions by the user as well. Where is that initial HTTP requests to load the container page only happens once to make all of this work. Blazer Server also requires a few routing configurations in startup. Do CSS map Blazer Hub simply sets up the connection path. For that SignalR circuit map, Fall back to page is a little more interesting. This method routes all incoming requests to the host razor page that contains our blazer app. 
+### let's start with Blazers server 
+- let's say that a request comes in from the home page of our app. 
+- By default, that request is routed to the host page, which is rendered back to the browser and acts as the main container for our blazer app. 
+- This host file also includes a SignalR JavaScript library and a marker comment in the HTML. 
+- Together, these items bootstrap are blazer app, and they create a new WebSocket circuit connection with the server.
+- All changes are intercepted and sent over the blazer circuit as messages and events rather than than HTTP requests for entirely new pages or new HTML documents as a component 
+- called the Blazer router response to these events by locating a component with a matching route template for the requested URL. 
+- The selected component is then rendered and sent back to the browser as an HTML fragment, where it is used to rewrite part of the original page that has changed. - -- Remember, with single page apps, we are continuously rewriting the DOM of the same page only where updates error necessary. 
+- The Blazer circuit also stays open to manage future interactions by the user as well. 
+- Where is that initial HTTP requests to load the container page only happens once to make all of this work. 
+- Blazer Server also requires a few routing configurations in startup. map Blazer Hub simply sets up the connection path. For that SignalR circuit map, Fall back to page is a little more interesting. This method routes all incoming requests to the host razor page that contains our blazer app. 
 
-The overall routing process and web assembly is similar to Blazers server, but without the overhead of a SignalR circuit and trips to the server. So when we visit the home page of our site, these index dot html pages downloaded along with other static assets like CSS files. The index page also references a Blazer web assembly, JavaScript Library. This library will download all of the necessary DLL els for our app and locate the app component on our index page to bootstrap are blazer application. From that point on, navigation clicks are intercepted by blazer and still handled by that familiar router component. The router locates a matching component from the downloaded assemblies and renders in place updates on the same page, just like we saw with Blazers server. The main difference is just that all of this happens right in the browser rather than over a circuit connection to the server Blazer web assembly also requires fewer application configurations to work properly. For example, the map, blazer hub and fall back page configurations we looked at earlier are not present in web assembly projects. A SignalR hub is not needed since there are no circuit round trips to the server. We also do not need to map fall back pages, since the MVC and Razor pages framework options are not available to run in the browser alongside Blazer in the first place. 
-## Exploring Application State
-## HTTP Communication with Blazor
-A RESTful web service uses a combination of structured Urals and HTTP verbs to map requests to certain endpoints. So, as an example are get jobs. Method shares the same route template as our create jobs method, but her application will map them differently whether the incoming request is a get or post type. Now, when working with external APIs like this, it's unlikely you'll have full access to the source code to figure all this out. Instead, you're usually provided documentation about the various endpoints. In some cases, you might be lucky enough to have access to something like swagger. UI Swagger UI provides visual and interactive documentation based on the swagger specifications, and it allows users to explore an APIs endpoints without the source code.
-### Calling a Web API with Blazor
-Let's explore the features Blazer provides for working with HTTP requests. The overall process is really not that different from other .NET options, but there are a few unique considerations. Blazer uses a class called HTTP client to make requests to APIs similar to the rest of .NET core. This is true of both Blazer web Assembly and Blazers server. However, there are some differences between the two hosting models that error worth discussing. So for Blazer web assembly, the HTTP client is mostly ready to go out of the box. We can simply inject it directly into our components or services, at least for simpler use cases. We do not have to worry too much about where that instance comes from and how it's managed for blazers server. We can also inject HTTP client in a similar way, but some additional configurations using a factory class are required to do so correctly.
+### Routing with Blazers WebAssembly 
+- the overall routing process and web assembly is similar to Blazers server, but without the overhead of a SignalR circuit and trips to the server. 
+- when we visit the home page of our site, these index.html pages downloaded along with other static assets like CSS files. 
+- The index page also references a Blazer web assembly, JavaScript Library. 
+- This library will download all of the necessary DLL els for our app and locate the app component on our index page to bootstrap are blazer application. 
+- From that point on, navigation clicks are intercepted by blazer and still handled by that familiar router component. 
+- The router locates a matching component from the downloaded assemblies and renders in place updates on the same page, just like as Blazers server. 
+- **The main difference is just that all of this happens right in the browser rather than over a circuit connection** to the server Blazer web assembly also requires fewer application configurations to work properly. 
+-  A SignalR hub is not needed since there are no circuit round trips to the server. 
+-  We also do not need to map fall back pages, since the MVC and Razor pages framework options are not available to run in the browser alongside Blazer in the first place. 
+
 
