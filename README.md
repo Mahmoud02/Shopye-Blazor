@@ -61,6 +61,8 @@ With Blazor WebAssembly, when a client browser makes the initial request to the 
 
 As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that request the **blazor.webassembly.js** file,This file executes and starts loading WebAssembly. This acts as a bootstrap, which requests .NET binaries from the server.  
 
+<img src="https://user-images.githubusercontent.com/18700494/172051673-541eec21-0131-48bc-b7bc-80a5a2161df1.png" /> \
+
 1. When the Blazor app loads, it downloads everything that it needs to the browser. 
 2. This is everything that makes up the web page, including HTML, CSS, maybe some JavaScript, and possibly images. 
 3. It also downloads the assemblies that make up the application, and it even downloads the complete .NET runtime that is converted into WebAssembly bytecode. 
@@ -92,6 +94,7 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
  6. finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
 
 ## Blazor Design Pattern
+<img src="https://user-images.githubusercontent.com/18700494/172051873-39fa8529-201c-4570-b270-22e097ccc014.png" /> \
 - As you start to use Blazer, you might notice some design similarities to some of the popular JavaScript frameworks out there. **Blazer is a component driven framework.** 
 -  Components allow us to break apart. Web-page is into reusable, isolated pieces that can be easily moved around the site. These components can do each communicate between one another and the server and have their own life cycles.
 - Single page apps dynamically rewrite the same web-page in response to user actions. They also rely on background requests through AJAX or Web sockets to retrieve updated data or mark up. Rather than reloading that entire page from the server.
@@ -100,6 +103,8 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
 - Single page apps provide a fluid and responsive experience for the user and avoid those constant full page reloads, which can also improve performance. 
 
 ## Dependency Injection Fundamentals
+<img src="https://user-images.githubusercontent.com/18700494/172052303-d78779b4-6e1f-4539-ab4c-36825bd68228.PNG" /> \
+
 - Dependency injection or DI is a critical aspect of a properly designed blazer application .
 - Conceptually dependency injection is a design pattern that implements inversion of control and dependency inversion principles. 
 - In generalized terms, these ideas state that high level classes or components should not depend on low level component implementations or be responsible for creating them. Instead, they should depend on abstractions that are provided to them in order to create **loosely coupled components**.
@@ -118,6 +123,7 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
  1. That instance is shared across all the different requests and components. 
 - The final option is **Scoped**, which will cause a service to be reused for all requests in the **same circuit**. 
 #### what is a circuit? 
+<img src="https://user-images.githubusercontent.com/18700494/172052096-fa47c2fa-061b-4921-ae58-f62402e2c916.PNG" /> \
 -  Blazer circuit is an abstraction over the SignalR connection between the browser and the server that helps to manage our state and scope. 
 -  Blazer circuits are crucial for rendering UI updates seamlessly on the server. 
 -  This means circuits only exist in Blazer server hosting models and not in the web assembly model, since those apps run entirely in the browser.
