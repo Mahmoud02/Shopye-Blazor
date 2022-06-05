@@ -13,6 +13,12 @@ Wouldn't it be great if you could use the same language on your server, in your 
 ### WebAssembly
 WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers.  
 
+## Code reuse
+- SPA developers have been fighting a losing battle for years, where web API endpoints define a payload in a certain shape — and the developer has to understand the shape of each endpoint. 
+- Consuming client-side code has to model the same shape, this is error-prone as the server can change the shape of an API whenever it needs to. 
+- The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app.
+- Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
+
 ### Blazor
 Blazor is the only **.NET-based Single-Page Application (SPA) framework in existence**, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
 
@@ -83,9 +89,6 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
  4. when you want to run your application offline, you use Blazor WebAssembly because it doesn't need to connect to the server. 
  5. when you don't want to run a fully featured server and be responsible for maintaining it and keeping it up and running, you also use Blazor WebAssembly. 
  6. finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
-
-## Code reuse
-SPA developers have been fighting a losing battle for years, where web API endpoints define a payload in a certain shape — and the developer has to understand the shape of each endpoint. Consuming client-side code has to model the same shape, this is error-prone as the server can change the shape of an API whenever it needs to. The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app. I cannot stress the importance of this enough. Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
 
 ## Blazor Design Pattern
 - As you start to use Blazer, you might notice some design similarities to some of the popular JavaScript frameworks out there. **Blazer is a component driven framework.** 
