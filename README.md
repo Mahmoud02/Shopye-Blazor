@@ -105,7 +105,7 @@ As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that
 ## Dependency Injection Fundamentals
 <img src="https://user-images.githubusercontent.com/18700494/172052303-d78779b4-6e1f-4539-ab4c-36825bd68228.PNG" /> \
 
-- Dependency injection or DI is a critical aspect of a properly designed blazer application .
+- Dependency injection or DI is a critical aspect of a properly designed blazor application .
 - Conceptually dependency injection is a design pattern that implements inversion of control and dependency inversion principles. 
 - In generalized terms, these ideas state that high level classes or components should not depend on low level component implementations or be responsible for creating them. Instead, they should depend on abstractions that are provided to them in order to create **loosely coupled components**.
 - A dependency injection container is responsible for supplying instances of dependencies throughout the application.
