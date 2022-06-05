@@ -19,7 +19,7 @@ WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime 
 - The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app.
 - Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
 
-### Blazor
+## Blazor
 Blazor is the only **.NET-based Single-Page Application (SPA) framework in existence**, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
 
 ## Blazor hosting models
