@@ -163,6 +163,6 @@ Conceptually routing is very similar in Blazer Server and web assembly, so the a
 - The router locates a matching component from the downloaded assemblies and renders in place updates on the same page, just like as Blazers server. 
 - **The main difference is just that all of this happens right in the browser rather than over a circuit connection** to the server Blazer web assembly also requires fewer application configurations to work properly. 
 -  A SignalR hub is not needed since there are no circuit round trips to the server. 
--  We also do not need to map fall back pages, since the MVC and Razor pages framework options are not available to run in the browser alongside Blazer in the first place. 
+
 
 
