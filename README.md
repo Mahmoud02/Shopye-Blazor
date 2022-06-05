@@ -4,7 +4,7 @@ This Demo Project presents how to develop a Blazor UI application and show how t
 Blazor lets you build interactive web UIs using C# instead of JavaScript. Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code is written in C#, allowing you to share code and libraries. 
 
 ## Single-Page Applications
-In the case of web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI. 
+In the case of web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI.   
 These frameworks are great at developing fast and interactive UIs, and they all run on JavaScript, the scripting language of the web. This is fine, but it does mean that there is a fundamental disconnect. You can't use the language that you use for your server-side code to create UIs for the browser. So you can't reuse your skillset, and some of these UI frameworks have a pretty steep learning curve. 
 
 Wouldn't it be great if you could use the same language on your server, in your libraries, and in the UI? You can. In fact, you can run any type of code in a browser using WebAssembly. WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers. 
