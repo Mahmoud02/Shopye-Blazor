@@ -2,6 +2,19 @@
 This Demo Project presents how to develop a Blazor UI application and show how to organize different components to build the UI and the communictaion with API.
 ## What is Blazor
 Blazor lets you build interactive web UIs using C# instead of JavaScript. Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code is written in C#, allowing you to share code and libraries. 
+
+## Single-Page Applications
+In the case of web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI. 
+These frameworks are great at developing fast and interactive UIs, and they all run on JavaScript, the scripting language of the web. This is fine, but it does mean that there is a fundamental disconnect. You can't use the language that you use for your server-side code to create UIs for the browser. So you can't reuse your skillset, and some of these UI frameworks have a pretty steep learning curve. 
+
+Wouldn't it be great if you could use the same language on your server, in your libraries, and in the UI? You can. In fact, you can run any type of code in a browser using WebAssembly. WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers. 
+
+It works by having a .NET runtime that is compiled into WebAssembly bytecode. This .NET runtime runs in the browser and can run whatever .NET assemblies, so DLLs, that you give it, including C# code that we create in a Blazor application.
+
+Also, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
+
+Blazor is the only .NET-based Single-Page Application (SPA) framework in existence.
+
 ## Blazor hosting models
 There are two primary Blazor hosting models, either Blazor Server or Blazor WebAssembly. 
 ### Blazor Server
@@ -44,16 +57,7 @@ This means it’s possible to take C, C++, Rust, C#, and other non-traditional w
 Blazor WebAssembly downloads everything, the assemblies of the app and its dependencies and even the .NET runtime, so this loads slower than the Blazor Server app. That can be a big deal, especially on mobile connections. But the good thing is that it caches all of these things, including the .NET runtime, so the wasm file. So when the user visits your app again, it loads these resources from the browser cache and loads the app extremely fast, so it's not that bad after all.
 
 
-## Single-Page Applications
-In the case of web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI. These frameworks are great at developing fast and interactive UIs, and they all run on JavaScript, the scripting language of the web. This is fine, but it does mean that there is a fundamental disconnect. You can't use the language that you use for your server-side code to create UIs for the browser. So you can't reuse your skillset, and some of these UI frameworks have a pretty steep learning curve. 
 
-Wouldn't it be great if you could use the same language on your server, in your libraries, and in the UI? You can. In fact, you can run any type of code in a browser using WebAssembly. WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers. 
-
-It works by having a .NET runtime that is compiled into WebAssembly bytecode. This .NET runtime runs in the browser and can run whatever .NET assemblies, so DLLs, that you give it, including C# code that we create in a Blazor application.
-
-Also, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
-
-Blazor is the only .NET-based Single-Page Application (SPA) framework in existence.
 ## Code reuse
 SPA developers have been fighting a losing battle for years, where web API endpoints define a payload in a certain shape — and the developer has to understand the shape of each endpoint. Consuming client-side code has to model the same shape, this is error-prone as the server can change the shape of an API whenever it needs to. The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app. I cannot stress the importance of this enough. Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
 
