@@ -1,63 +1,83 @@
-# Blazor
+# Overview
 This Demo Project presents how to develop a Blazor UI application and show how to organize different components to build the UI and the communictaion with API.
 ## What is Blazor
 Blazor lets you build interactive web UIs using C# instead of JavaScript. Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code is written in C#, allowing you to share code and libraries. 
 
 ## Single-Page Applications
-In the case of web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI.   
-These frameworks are great at developing fast and interactive UIs, and they all run on JavaScript, the scripting language of the web. This is fine, but it does mean that there is a fundamental disconnect. You can't use the language that you use for your server-side code to create UIs for the browser. So you can't reuse your skillset, and some of these UI frameworks have a pretty steep learning curve. 
+In web development, you want to show something in a browser, and nowadays you would use a framework like Angular or Vue or React to create your UI.   
+These frameworks are great at developing fast and interactive UIs, and they all run on JavaScript, the scripting language of the web.  
+This is fine, but it does mean that there is a fundamental disconnect.**You can't use the language that you use for your server-side code to create UIs** for the browser,so you can't reuse your skillset, and some of these UI frameworks have a pretty steep learning curve.  
 
-Wouldn't it be great if you could use the same language on your server, in your libraries, and in the UI? You can. In fact, you can run any type of code in a browser using WebAssembly. WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers. 
+Wouldn't it be great if you could use the same language on your server, in your libraries, and in the UI,in fact, you can run any type of code in a browser using **WebAssembly**. 
 
-It works by having a .NET runtime that is compiled into WebAssembly bytecode. This .NET runtime runs in the browser and can run whatever .NET assemblies, so DLLs, that you give it, including C# code that we create in a Blazor application.
+### WebAssembly
+WebAssembly is a way to run bytecode in a browser inside the JavaScript runtime sandbox. You can compile any type of code, like C++ or C#, to WebAssembly bytecode and run it in a browser at near-native speed without the need for a plugin, and that is because WebAssembly is a native part of all the major browsers, including mobile browsers.  
 
-Also, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
-
-Blazor is the only .NET-based Single-Page Application (SPA) framework in existence.
+### Blazor
+Blazor is the only **.NET-based Single-Page Application (SPA) framework in existence**, in Blazor, we can reuse existing libraries. Blazor is just a framework that runs on the .NET runtime, so we can use any library that we want to use, as long as it is compatible with .NET Standard. This means that we can use our own libraries and also almost all public NuGet packages.
 
 ## Blazor hosting models
 There are two primary Blazor hosting models, either Blazor Server or Blazor WebAssembly. 
 ### Blazor Server
-With Blazor Server, when a client browser makes the initial request to the web server the server executes .NET code to generate an HTML response dynamically,  HTML is returned, and subsequent requests are made to fetch CSS and JavaScript as specified in the HTML document. 
-Once the application is loaded and running, clientside routing and **other UI updates are made possible with an ASP.NET Core SignalR connection**. 
-ASP.NET Core SignalR offers a bidirectional communication between client and server, sending messages in real-time. This technology is used to communicate changes to the document object model (DOM) on the client browser — **without a page refresh**. 
+With Blazor Server, when a client browser makes the initial request to the web server the server executes .NET code to generate an HTML response dynamically,  HTML is returned, and subsequent requests are made to fetch CSS and JavaScript as specified in the HTML document.  
 
-Blazor Server, the server-side Blazor app. In this architecture, the Blazor app runs inside an ASP.NET website that runs on the .NET runtime. This website then serves the Blazor website and loads Blazor through a WebSocket connection that it uses through SignalR. Using this, UI updates are streamed from the server in real time. This sounds complicated, but you don't have to do anything special to make this work. This all comes out of the box. And by the way, code in a Blazor Server application can also interact with JavaScript, just like code in Blazor WebAssembly can. You can use Blazor Server for thin client scenarios. These are scenarios where you want to run your app on a client with limited resources and where it might not have WebAssembly. It uses a real-time WebSocket connection through the SignalR framework to update UI elements. And because you run your app on a server instead of the client, you have access to everything that an ASP.NET server has to offer. This includes the ability to easily access databases and APIs from the server and the ability to store secrets safely.
+Once the application is loaded and running, clientside routing and **other UI updates are made possible with an ASP.NET Core SignalR connection**.  
 
-Every client needs to have a connection to the server. Luckily, you can scale these connections by using an Azure SignalR service, which is scalable by design. Let's look at the pros and cons of Blazor Server. We'll start with the pros. Everything runs on the server, so there is no need to download the .NET runtime or all the assemblies of the app. This means that the app loads fast. And because you run on the server, you have access to the full capabilities of an ASP.NET server. Also, WebAssembly is not required to run the app, which can be handy in thin client scenarios. And finally, you can store secrets safely on the server without uploading them to every client. And here are the disadvantages of Blazor Server. You need a connection to the server, so you can't work offline. Also, you need a server to run this, so you need to maintain and secure that server and keep it up and running. And finally, because you constantly go back to the server for UI updates, you'll have a higher latency than with the client app, which means that your application is slower than a Blazor WebAssembly application. And slower doesn't mean slow. ASP.NET Core is extremely fast compared to other frameworks, so your app will still be very fast, just not as fast as when it runs on the client in WebAssembly.
+ASP.NET Core SignalR offers **a bidirectional communication between client and server**, sending messages in real-time. This technology is used to communicate changes to the document object model (DOM) on the client browser — **without a page refresh**.  
 
- When you need near-native performance, for instance, when you are creating a game, you should use Blazor WebAssembly. And when you need to connect to things like databases and APIs, you'd be better off using Blazor Server. You can do this in Blazor WebAssembly, but you would be storing your credentials on every client. And when you cannot be sure that WebAssembly is on your user's device, you should use Blazor Server. Okay, so when you want to run your application offline, you use Blazor WebAssembly because it doesn't need to connect to the server. And when you don't want to run a fully featured server and be responsible for maintaining it and keeping it up and running, you also use Blazor WebAssembly. And finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
- 
- 
+In this architecture:
+1. the Blazor app runs inside an ASP.NET website that runs on the .NET runtime. 
+2. This website then serves the Blazor website and loads Blazor through a WebSocket connection that it uses through SignalR. 
+3. UI updates are streamed from the server in real time. This sounds complicated, but you don't have to do anything special to make this work. This all comes out of the box. 
+4. code in a Blazor Server application can also interact with JavaScript, just like code in Blazor WebAssembly can.
+5. You can use Blazor Server for thin client scenarios. These are scenarios where you want to run your app on a client with limited resources and where it might not have WebAssembly. 
+6. It uses a real-time WebSocket connection through the SignalR framework to update UI elements. 
+7. because you run your app on a server instead of the client, you have access to everything that an ASP.NET server has to offer. 
+8. This includes the ability to easily access databases and APIs from the server and the ability to store secrets safely.
+9. Every client needs to have a connection to the server,luckily, you can scale these connections by using an Azure SignalR service, which is scalable by design. 
+#### Let's look at the pros and cons of Blazor Server.
+1. We'll start with the pros. 
+ - Everything runs on the server, so there is no need to download the .NET runtime or all the assemblies of the app. This means that the app loads fast. 
+ - The component code isn’t served to clients, only the resulting HTML. 
+ - because you run on the server, you have access to the full capabilities of an ASP.NET server. 
+ - WebAssembly is not required to run the app, which can be handy in thin client scenarios. 
+ - you can store secrets safely on the server without uploading them to every client. 
+ - Server capabilities are present with the Blazor Server hosting model, as the app technically runs on the server.
+2. here are the disadvantages of Blazor Server. 
+ - You need a connection to the server, so you can't work offline. 
+ - you need a server to run this, so you need to maintain and secure that server and keep it up and running. 
+ - because you constantly go back to the server for UI updates, you'll have a higher latency than with the client app, which means that your application is slower than a Blazor WebAssembly application. And slower doesn't mean slow.your app will still be very fast, just not as fast as when it runs on the client in WebAssembly.
 
-#### Advantages to using Blazor Server as a hosting model 
-1. The download size is smaller than Blazor WebAssembly, as the app is rendered on the server. 
-2. The component code isn’t served to clients, only the resulting HTML. 
-3. Server capabilities are present with the Blazor Server hosting model, as the app technically runs on the server.
 
 ### Blazor WebAssembly hosting model
-With Blazor WebAssembly, when a client browser makes the initial request to the web server the server returns static HTML. Subsequent requests are made to fetch CSS and JavaScript as specified in the HTML document.
-As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that request the **blazor.webassembly.js** file,This file executes and starts loading WebAssembly. This acts as a bootstrap, which requests .NET binaries from the server.
+With Blazor WebAssembly, when a client browser makes the initial request to the web server the server returns static HTML. Subsequent requests are made to fetch CSS and JavaScript as specified in the HTML document.  
 
-When the Blazor app loads, it downloads everything that it needs to the browser. This is everything that makes up the web page, including HTML, CSS, maybe some JavaScript, and possibly images. It also downloads the assemblies that make up the application, and it even downloads the complete .NET runtime that is converted into WebAssembly bytecode. All of this runs completely on WebAssembly, which is a part of all major web browsers, including mobile browsers. This type of Blazor application doesn't need a connection to a server. It just needs to load into the browser, and that's it. A Blazor WebAssembly app consists out of static files, so you don't need a full-fledged server to get this to the browser. 
+As part of a Blazor WebAssembly app’s HTML, there will be a <link>element that request the **blazor.webassembly.js** file,This file executes and starts loading WebAssembly. This acts as a bootstrap, which requests .NET binaries from the server.  
 
-Running your app on WebAssembly is fast. You get near-native performance, which is really fast. And your app can work completely offline because you don't need a connection to a server. This can be very useful. Also, you don't need a server, just something that gets your static files to a browser. This keeps your architecture simple, and you don't have to maintain a server and keep it up and running. 
+1. When the Blazor app loads, it downloads everything that it needs to the browser. 
+2. This is everything that makes up the web page, including HTML, CSS, maybe some JavaScript, and possibly images. 
+3. It also downloads the assemblies that make up the application, and it even downloads the complete .NET runtime that is converted into WebAssembly bytecode. 
+4. All of this runs completely on WebAssembly, which is a part of all major web browsers, including mobile browsers. 
+5. This type of Blazor application doesn't need a connection to a server. It just needs to load into the browser, and that's it.
+6. Running your app on WebAssembly is fast. You get near-native performance, which is really fast.
+7. Your app can work completely offline because you don't need a connection to a server.
+8. your app can work completely offline because you don't need a connection to a server.
+9. This architecture uses the processing resources of the client device, so the browser and the device it runs on does all the work. 
+10. WebAssembly is a native part of all major browsers. No plugin needed.
+11. This keeps things simple and makes it easy to deploy to all sorts of devices without worrying about the prerequisites.
 
-This architecture uses the processing resources of the client device, so the browser and the device it runs on does all the work. This is good because these resources are usually underutilized. And WebAssembly is a native part of all major browsers. No plugin needed. This keeps things simple and makes it easy to deploy to all sorts of devices without worrying about the prerequisites.
+#### There are also downsides to running everything in the browser. 
+1. The first thing is that you are restricted to the capabilities of the browser. 
+2. Your code runs in a sandbox, and you have to behave within the rules of that sandbox. 
+3. And the browser does all the work. We just said that this can be a benefit, but it can also be a downside. 
+4. If you need to do compute-intensive things, you might not have enough processing power to do so. 
+5. Blazor WebAssembly downloads everything to the browser, including the .NET runtime. This takes time, so loading the app will be relatively slower than when you don't have to do this. 
+6. But the good thing is that it caches all of these things, including the .NET runtime, so the wasm file. So when the user visits your app again, it loads these resources from the browser cache and loads the app extremely fast, so it's not that bad after all.
+7. when you need to store a key to connect to an API, you can only store it in a file that is downloaded to the client. There are ways to encrypt secrets like that, but it is still not very safe. 
+8. The final disadvantage is that WebAssembly is required. Sure, it is all part of major browsers, but sometimes you need your app to run on older browsers that might not have WebAssembly.
 
-There are also downsides to running everything in the browser. The first thing is that you are restricted to the capabilities of the browser. Your code runs in a sandbox, and you have to behave within the rules of that sandbox. And the browser does all the work. We just said that this can be a benefit, but it can also be a downside. If you need to do compute-intensive things, you might not have enough processing power to do so. Blazor WebAssembly downloads everything to the browser, including the .NET runtime. This takes time, so loading the app will be relatively slower than when you don't have to do this. And when you need to store a key to connect to an API, you can only store it in a file that is downloaded to the client. There are ways to encrypt secrets like that, but it is still not very safe. The final disadvantage is that WebAssembly is required. Sure, it is all part of major browsers, but sometimes you need your app to run on older browsers that might not have WebAssembly.
-
-
-
-**With Blazor WebAssembly hosting, all of your C# code is executed on the client. This means that you should avoid using any code that requires server-side functionality, and you should avoid sensitive data such as passwords, API keys, or other sensitive information.**
-
-With the Blazor WebAssembly hosting model, you can write C# that compiles to WebAssembly.
-This means it’s possible to take C, C++, Rust, C#, and other non-traditional web programming languages and target WebAssembly for their compilation. This results in WebAssembly binaries, which are web-runnable based on open standards but from programming languages other than JavaScript.
-
-Blazor WebAssembly downloads everything, the assemblies of the app and its dependencies and even the .NET runtime, so this loads slower than the Blazor Server app. That can be a big deal, especially on mobile connections. But the good thing is that it caches all of these things, including the .NET runtime, so the wasm file. So when the user visits your app again, it loads these resources from the browser cache and loads the app extremely fast, so it's not that bad after all.
-
-
-
+### Final Thought
+ When you need near-native performance, for instance, when you are creating a game, you should use Blazor WebAssembly. And when you need to connect to things like databases and APIs, you'd be better off using Blazor Server. You can do this in Blazor WebAssembly, but you would be storing your credentials on every client. And when you cannot be sure that WebAssembly is on your user's device, you should use Blazor Server. Okay, so when you want to run your application offline, you use Blazor WebAssembly because it doesn't need to connect to the server. And when you don't want to run a fully featured server and be responsible for maintaining it and keeping it up and running, you also use Blazor WebAssembly. And finally, when you want to create performant, rich, and interactive applications for the web with C#, you can use Blazor in any form
 ## Code reuse
 SPA developers have been fighting a losing battle for years, where web API endpoints define a payload in a certain shape — and the developer has to understand the shape of each endpoint. Consuming client-side code has to model the same shape, this is error-prone as the server can change the shape of an API whenever it needs to. The client would have to adapt, and this is tedious. Blazor can alleviate that concern by sharing models from .NET Web APIs, with the Blazor client app. I cannot stress the importance of this enough. Sharing the models from a class library with both the server and the client is like having your cake and eating it too.
 
