@@ -31,6 +31,7 @@ Once the application is loaded and running, clientside routing and **other UI up
 
 ASP.NET Core SignalR offers **a bidirectional communication between client and server**, sending messages in real-time. This technology is used to communicate changes to the document object model (DOM) on the client browser — **without a page refresh**.  
 
+<img src="https://user-images.githubusercontent.com/18700494/172051522-0ff7e7ca-af1a-4c9e-8e83-7ba52515440a.png" /> \
 In this architecture:
 1. the Blazor app runs inside an ASP.NET website that runs on the .NET runtime. 
 2. This website then serves the Blazor website and loads Blazor through a WebSocket connection that it uses through SignalR. 
