@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopye.Models", "Shopye.Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopye.API", "Shopye.API\Shopye.API.csproj", "{FF30FD03-B264-482A-9E52-C638AF6558FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopye.UI", "Shopye.UI\Shopye.UI.csproj", "{5B375E26-254D-4A5A-A248-9F50A9DCCDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopye.UI", "Shopye.UI\Shopye.UI.csproj", "{5B375E26-254D-4A5A-A248-9F50A9DCCDAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

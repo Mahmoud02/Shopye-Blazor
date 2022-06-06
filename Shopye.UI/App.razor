@@ -1,4 +1,12 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@*
+    -The App.razor is the main compoent of our application
+    -The Router Comppent is built in and setup the Routing of our app
+    -The Router Compent is responsible for matching the request with an Compoent
+    -We Use @Page directive in the compoent to set his matching URL
+    -Compoent can have several Urls
+    -we specify the default layout of rendered compents by using 'Default Layout'
+*@
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />

@@ -1,0 +1,70 @@
+﻿@page "/testComponent"
+@*
+    -Compoent Name must start with Upper Case Character
+*@
+<h3>-Tips</h3>
+<ul>
+    <li>@message</li>
+    <li>@message2</li>
+    <li>@message3</li>
+    <li>there are two approaches to split the Html and C# Code
+        <ul>
+            <li>Partial File approach</li>
+            <li>Base Class approach</li>
+        </ul>
+    </li>
+</ul>
+<PartialComponent/>
+<BaseComponent/>
+<h5>Pass Parameter to another component through The URL</h5>
+<a style="display:block; margin-bottom:5px" href="componentWithParameter/1">Go to another component and pass value throught URL </a>
+<hr>
+@code {
+    private String message = "When this compoent is compiled the c# code and Html are converted to a compoent class";
+    private String message3 = "in Razor Compoent the Deafult is that 'The Html Code and C# Code are in the same file but we can split them'";
+
+}
+@code {
+    private String message2 
+    = "It also possible to have more than one code block and this is a 'variable from another code block'";
+
+}
+@*Event Handling*@
+ 
+<h5>Event Handling</h5>
+<button @onclick="clickMe">Event Handling: click me to call c# Function!!</button>
+<p>this value is set after clicking the button @myValue</p>
+<p @onmouseover="hoverMe" @onmouseout="unHoverMe">hover me to change this value @myValue2</p>
+
+@code{
+    public string myValue { get; set; }
+    public string myValue2 { get; set; }
+    void clickMe(MouseEventArgs mouseEventArgs)
+    {
+        myValue = "my value is set after clicking Event and this this object is passed to the function="+mouseEventArgs.ToString() ;
+    }
+    void hoverMe(MouseEventArgs mouseEventArgs)
+    {
+        myValue2 = "my value is set after hover Event and this this object is passed to the function="+mouseEventArgs.ToString() ;
+    }
+    void unHoverMe(MouseEventArgs mouseEventArgs)
+    {
+        myValue2 = "";
+    }
+
+}
+<hr>
+@*Data Binding*@
+<h5>Data Binding</h5>
+<p><b>one way dataBinding </b>@firstBindingValue </p>
+<p><b>two way dataBinding </b>@twoWayBindingValue </p>
+<h7>example</h7>
+<input @bind="name" />
+<input @bind="name" @bind:event="oninput" />
+<p>we read this value from c# variavle: @name </p>
+
+@code{
+    String firstBindingValue { get; set; } = "We read this value from c# variable when this variable is changed by c# code only,the UI will cahange automatically";
+    String twoWayBindingValue { get; set; } = "in two-way data-binding we use [bind] we can change variable value from UI or C# Code";
+    String name = "Mahmoud";
+}

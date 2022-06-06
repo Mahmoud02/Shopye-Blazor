@@ -40,7 +40,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Blazor Server use SignalR , so this method map connection between server and the client 
+/*
+ We call MapBlazorHub to map the Blazor Hub to the app’s default path. 
+ The Blazor Server script (blazor.server.js) automatically points to the endpoint created by MapBlazorHub.
+ blazor.server.jsallows the app to establish a SignalR connection over the network to handle UI updates and event forwarding between the Blazor app running in the browser and our ASP.NET Core app running on the server. 
+ You can find a reference to this js script in the Pages\ _Host.cshtml file.
+ */
 app.MapBlazorHub();
+// map every request to this page
 app.MapFallbackToPage("/_Host");
 
 app.Run();
