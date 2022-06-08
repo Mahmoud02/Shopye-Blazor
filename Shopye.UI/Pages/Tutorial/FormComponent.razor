@@ -1,0 +1,23 @@
+﻿@page "/form"
+@using Shopye.Models.Dtos
+@using Microsoft.Extensions.Logging
+@inject ILogger<FormComponent> Logger
+<EditForm  Model="@testDto" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <InputText id="name" @bind-Value="testDto.Name" />
+         <InputText  @bind-Value="testDto.Description" />
+         <ValidationMessage For ="@(() => testDto.Description )" />
+        <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private TestDto testDto = new();
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+    }
+}

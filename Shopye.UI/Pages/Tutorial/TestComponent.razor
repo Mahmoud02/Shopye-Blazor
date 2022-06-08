@@ -1,4 +1,5 @@
 ﻿@page "/testComponent"
+@inject NavigationManager navigationManager;
 @*
     -Compoent Name must start with Upper Case Character
 *@
@@ -67,4 +68,34 @@
     String firstBindingValue { get; set; } = "We read this value from c# variable when this variable is changed by c# code only,the UI will cahange automatically";
     String twoWayBindingValue { get; set; } = "in two-way data-binding we use [bind] we can change variable value from UI or C# Code";
     String name = "Mahmoud";
+}
+@*Nested Compnent*@
+<hr>
+<h5>Pass Parameter to Child Compnent</h5>
+<ComponentWithParameter PassFromParent ="this value is passed from the parent compnent"/>
+@*Event Callback*@
+<hr>
+<h5>Event Callback</h5>
+<p>message from the child: @messageFromChild</p>
+<EventCallbackComponent onButtonClick="onButtonClicked" />
+@code{
+    public string messageFromChild { get; set; }
+    void onButtonClicked(string message)
+    {
+        messageFromChild = message;
+    }
+}
+<hr>
+@*Forms*@
+<h5>Go to the Form</h5>
+<a style="display:block; margin-bottom:5px" href="form">Go Form Component </a>
+<hr>
+@*Navigation*@
+<h5>Navigation Manager</h5>
+<button @onclick="onNavigateClick">Click here to navigate to Form Compnent using Navigation Manager</button>
+@code{
+    private void onNavigateClick()
+    {
+        navigationManager.NavigateTo("form");
+    }
 }

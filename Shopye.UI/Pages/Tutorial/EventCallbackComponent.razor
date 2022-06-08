@@ -1,0 +1,11 @@
+﻿<button @onclick="onChange" >Fire Event </button>
+@code {
+    public string message { get; set; }
+    [Parameter]
+    public EventCallback<String> onButtonClick { get; set; }
+    public async Task onChange()
+    {
+        message = "This is a message after event is triger by child component and the event is handled by parent component and we pass this value from the child ";
+        await onButtonClick.InvokeAsync(message);
+    }
+}

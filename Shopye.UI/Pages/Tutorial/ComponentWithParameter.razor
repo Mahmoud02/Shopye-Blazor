@@ -1,7 +1,14 @@
 ﻿@page "/componentWithParameter/{parameter}"
-<p>this Parameter is passed to the Component as String and we using  [Parameter] to bind them automatic : @Parameter</p>
+@if(@Parameter != null){
+    <p>this Parameter is passed to the Component as String From the URL and we using  [Parameter] to bind them automatic : @Parameter</p>
+}
+@if(@PassFromParent != null){
+   <p>@PassFromParent and we using  [Parameter] to bind them automatic : @PassFromParent</p>
+}
 
 @code {
     [Parameter]
     public string Parameter { get; set; }
+    [Parameter]
+    public string PassFromParent { get; set; }
 }
